@@ -117,7 +117,7 @@
 				//gestione file geojson con percorso e popup
 				$.ajax({
 					dataType: "json",
-					url: "./notte_per_la_cultura_2015_centro_storico.geojson",
+					url: "./notte_per_la_cultura_2015_centro_storico.geojsonp",
 					success: function(data) {
 						var district_boundary = new L.geoJson(data, {
 							style: function (feature) {
