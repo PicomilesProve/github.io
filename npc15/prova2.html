@@ -113,9 +113,11 @@
 				return;
 				}
 				// create the tile layer with correct attribution
+				/*
 				var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 				var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-				var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 19, attribution: osmAttrib});		
+				var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 19, attribution: osmAttrib});
+				*/
 				//gestione file geojson con percorso e popup
 				$.ajax({
 					dataType: "json",
@@ -128,18 +130,19 @@
 							onEachFeature: function (feature, layer) {
 								layer.bindPopup(feature.properties.description);
 							}
-						}).addTo(map);
+						}).addTo(mymap);
 					}	
 				}).error(function() {});
+				/*
 				var	southWest = L.latLng(38.13695, 14.96275),
 					northEast = L.latLng(38.1419, 14.9664),
 					bounds = L.latLngBounds(southWest, northEast);
 				map.fitBounds(bounds);
-				
+			
 				map.addLayer(osm); 
-				
+				*/
 				askForPlots();
-				map.on('moveend', onMapMove);
+				mymap.on('moveend', onMapMove);
 			}
 			function onMapMove(e) {
 				askForPlots();
@@ -152,7 +155,7 @@
 			}
 			function askForPlots() {
 				// request the marker info with AJAX for the current bounds
-				var bounds=map.getBounds();
+				var bounds=mymap.getBounds();
 				var minll=bounds.getSouthWest();
 				var maxll=bounds.getNorthEast();
 				var msg='http://www.plotbrowser.com/leaflet/findbybbox.cgi?format=leaflet&bbox='+minll.lng+','+minll.lat+','+maxll.lng+','+maxll.lat;
@@ -171,7 +174,7 @@
 							var plotll = new L.LatLng(plotlist[i].lat,plotlist[i].lon, true);
 							var plotmark = new L.Marker(plotll);
 							plotmark.data=plotlist[i];
-							map.addLayer(plotmark);
+							mymap.addLayer(plotmark);
 							plotmark.bindPopup("<h3>"+plotlist[i].name+"</h3>"+plotlist[i].details);
 							plotlayers.push(plotmark);
 						}
@@ -180,7 +183,7 @@
 			}
 			function removeMarkers() {
 				for (i=0;i<plotlayers.length;i++) {
-					map.removeLayer(plotlayers[i]);
+					mymap.removeLayer(plotlayers[i]);
 				}
 				plotlayers=[];
 			}
@@ -208,22 +211,22 @@
 					//L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup();
 					var redMarker = L.marker(e.latlng, {icon: redIcon});
 					//map.removeLayer(circle);
-					map.removeLayer(redMarker);
+					mymap.removeLayer(redMarker);
 					redMarker.addTo(map).bindPopup("Sei in questo punto<br>You are here").openPopup();
 					//L.marker(e.latlng, {icon: redIcon}).addTo(map).bindPopup("Sei in questo punto<br>You are here").openPopup();
-					var circle = L.circle(e.latlng, radius).addTo(map);
+					var circle = L.circle(e.latlng, radius).addTo(mymap);
 				}
-				map.on('locationfound', onLocationFound);	
+				mymap.on('locationfound', onLocationFound);	
 	
 				function onLocationError(e) {
 					alert(e.message);
 				}
-				map.on('locationerror', onLocationError);
+				mymap.on('locationerror', onLocationError);
 				
-				map.locate({setView: true, watch: true, enableHighAccuracy: true, maximumAge: 10000, maxZoom: 17});
+				mymap.locate({setView: true, watch: true, enableHighAccuracy: true, maximumAge: 10000, maxZoom: 17});
 				$('#findme').text('sto cercando...');
-				map.on('locationfound', function(e) { 
-					map.stopLocate();
+				mymap.on('locationfound', function(e) { 
+					mymap.stopLocate();
 					$('#findme').text('localizzami');
 					return;
 				});
