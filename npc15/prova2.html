@@ -79,7 +79,7 @@
 	</head>
 	
 	<body>
-		<div id="map" style="height: 880px;">
+		<div id="mapid" style="height: 880px;">
 			<div id="npc15logo" style="leaflet-popup-content-wrapper">
 				<a href="http://on.fb.me/1KMs3N1" target="_blank">
 				<img src="./images/npc15_300x250.png" width="120px"></a>
@@ -94,7 +94,14 @@
 			var ajaxRequest;
 			var plotlist;
 			var plotlayers=[];
-			var map = L.map('map').setView([38.1394, 14.9646], 15);
+			var mymap = L.map('mapid').setView([38.1394, 14.9646], 15);
+			L.tileLayer	(
+				'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+				{
+    				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+    				maxZoom: 20
+				}
+				).addTo(mymap);
 			function initmap() {
 				// geocoder
 				//map.on('click', onMapClick);
