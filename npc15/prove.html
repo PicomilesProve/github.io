@@ -5,12 +5,11 @@
 		<meta charset=utf-8 />
     		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     		<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-    		<style>
-      			#mapid { height: 180px; }  
-    		</style>
+    		
   	</head>
   	<body>
     		<div id="mapid">
+			<style>#mapid { height: 180px; } </style>
       			var mymap = L.map('mapid').setView([51.505, -0.09], 13);
       			L.tileLayer	(
 						'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
