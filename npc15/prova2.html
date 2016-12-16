@@ -80,10 +80,11 @@
 	
 	<body>
 		<div id="mapid" style="height: 880px;">
-			<div id="npc15logo" style="leaflet-popup-content-wrapper">
-				<a href="http://on.fb.me/1KMs3N1" target="_blank">
-				<img src="./images/npc15_300x250.png" width="120px"></a>
-			</div>
+		<div id="npc15logo" style="leaflet-popup-content-wrapper">
+			<a href="http://on.fb.me/1KMs3N1" target="_blank">
+				<img src="./images/npc15_300x250.png" width="120px">
+			</a>
+		</div>
 		</div>
 		<div id="npc15button">
 			<!--<button id="find" class="boton" onclick="findme()">localizzami</button>-->
@@ -102,6 +103,7 @@
     				maxZoom: 20
 				}
 				).addTo(mymap);
+			var mymap = npc15logo.addTo(mymap);
 			function initmap() {
 				// geocoder
 				//map.on('click', onMapClick);
