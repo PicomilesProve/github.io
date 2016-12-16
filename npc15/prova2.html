@@ -80,11 +80,11 @@
 	
 	<body>
 		<div id="mapid" style="height: 880px;">
-		<div id="npc15logo" style="leaflet-popup-content-wrapper">
-			<a href="http://on.fb.me/1KMs3N1" target="_blank">
-				<img src="./images/npc15_300x250.png" width="120px">
-			</a>
-		</div>
+			<div id="npc15logo" style="leaflet-popup-content-wrapper">
+				<a href="http://on.fb.me/1KMs3N1" target="_blank">
+					<img src="./images/npc15_300x250.png" width="120px">
+				</a>
+			</div>
 		</div>
 		<div id="npc15button">
 			<!--<button id="find" class="boton" onclick="findme()">localizzami</button>-->
@@ -103,7 +103,7 @@
     				maxZoom: 20
 				}
 				).addTo(mymap);
-			npc15logo.addTo(mymap);
+			
 			function initmap() {
 				// geocoder
 				//map.on('click', onMapClick);
@@ -214,7 +214,7 @@
 					var redMarker = L.marker(e.latlng, {icon: redIcon});
 					//map.removeLayer(circle);
 					mymap.removeLayer(redMarker);
-					redMarker.addTo(map).bindPopup("Sei in questo punto<br>You are here").openPopup();
+					redMarker.addTo(mymap).bindPopup("Sei in questo punto<br>You are here").openPopup();
 					//L.marker(e.latlng, {icon: redIcon}).addTo(map).bindPopup("Sei in questo punto<br>You are here").openPopup();
 					var circle = L.circle(e.latlng, radius).addTo(mymap);
 				}
